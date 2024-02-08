@@ -7,6 +7,18 @@ namespace Scenes.LevelScene
 {
     public class Block:MonoBehaviour
     {
+        private SpriteRenderer _sprite;
+
+        private Vector3 _startScale;
+        private Color _clr;
+
+        private void Awake()
+        {
+            _sprite = GetComponent<SpriteRenderer>();
+            _clr = _sprite.color;
+            _startScale = transform.localScale;
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.CompareTag("Bullet"))
@@ -18,22 +30,24 @@ namespace Scenes.LevelScene
             float t = 0;
             while (t < 1)
             {
-                transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 0.8f, t);
+                transform.localScale = Vector3.Lerp(_startScale, Vector3.one*1.3f, t);
                 t += Time.deltaTime * 8;
                 yield return null;
             }
 
-            transform.localScale = Vector3.one * 0.8f;
+            _sprite.color = new Color(1, 0.5f, 0.7f);
+            transform.localScale = Vector3.one*1.3f;
             
             t = 0;
             while (t < 1)
             {
-                transform.localScale = Vector3.Lerp(Vector3.one * 0.8f,Vector3.one,  t);
+                transform.localScale = Vector3.Lerp(Vector3.one*1.3f,_startScale,  t);
                 t += Time.deltaTime * 8;
                 yield return null;
             }
-            transform.localScale = Vector3.one;
-            
+            transform.localScale = _startScale;
+            _sprite.color = Color.white;
+
         }
     }
 }

@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data;
@@ -8,7 +9,12 @@ namespace Scenes.LevelScene
 {
     public class HoldAimScript : MonoBehaviour
     {
+        [SerializeField] private Transform playerTransform;
         [SerializeField] private Transform shootTransform;
+
+        [SerializeField] private Transform leftBorder;
+        [SerializeField] private Transform rightBorder;
+        
         [SerializeField] private int bounceCount;
         [SerializeField] private Transform[] points;
         [SerializeField] private float speed;
@@ -93,9 +99,12 @@ namespace Scenes.LevelScene
             {
                 tr.gameObject.SetActive(false);
             }
-            
-            if(_isTouched) 
+
+            if (_isTouched)
+            {
                 LevelEventBus.Publish(LevelEventBus.LevelEventType.BulletShoot);
+                shootTransform.transform.rotation = Quaternion.Euler(Vector3.zero);
+            }
 
             _isTouched = false;
         }
@@ -119,8 +128,9 @@ namespace Scenes.LevelScene
         private void BulletLand()
         {
             Vector3 pos = Bullet.MainBullet.transform.position;
-            pos.y = shootTransform.position.y;
-            shootTransform.position = pos;
+            pos.y = playerTransform.position.y;
+            pos.x = Mathf.Clamp(pos.x, leftBorder.position.x, rightBorder.position.x);
+            playerTransform.position = pos;
             _isCapable = true;
         }
     
@@ -143,6 +153,10 @@ namespace Scenes.LevelScene
             Vector2 origin = shootTransform.position;
             Vector2 direction = (Vector2)touchPos - origin;
 
+            float angle = Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg;
+            
+            shootTransform.transform.rotation = Quaternion.Euler(new Vector3(0,0,angle-90f));
+            
             _bulletDirection = direction;
         
             for(int i = 1; i<bounceCount; i++)
