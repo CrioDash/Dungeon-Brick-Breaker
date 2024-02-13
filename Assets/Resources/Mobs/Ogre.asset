@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da5ae19415e48f4aae487e09f381729, type: 3}
+  m_Name: Ogre
+  m_EditorClassIdentifier: 
+  health: 5
+  type: 1
+  sprites:
+  - {fileID: 833578151, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -1281154306, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -737817018, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 401276559, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -987944048, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 1466217381, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -665784216, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 507756838, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 1111039617, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 911303216, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 1622925743, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 525362008, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 1960402876, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 1712400527, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 359875097, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 843178965, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -1361629432, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -625279630, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -1647492528, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 2138774248, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 1872172968, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 648712097, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -1680625483, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -2126903862, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -588370286, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 39348990, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 953604109, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 699248043, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: -939713507, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  - {fileID: 698417446, guid: deb5d4ab5ce97d349a66a8bb9ee35870, type: 3}
+  skinCount: 5
+  framesPerSkin: 5
+  animationThreshold: 0

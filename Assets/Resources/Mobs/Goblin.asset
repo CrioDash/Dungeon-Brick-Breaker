@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da5ae19415e48f4aae487e09f381729, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: 
+  health: 2
+  type: 0
+  sprites:
+  - {fileID: 1804134749, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 1051319305, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 418195035, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -235696183, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 2043509540, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -20246130, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -733455331, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 771698530, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -246560690, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -477524937, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -353928604, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 1072178368, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -1451165989, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -548916284, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 985789949, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 117470048, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 1495784813, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 179022485, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -1606258409, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -706224258, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -1087259972, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -471540598, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 2131986781, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 1166563322, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -648866816, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -1914479653, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -1122826931, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: -1104970829, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 1120920296, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  - {fileID: 1097279117, guid: 2f79214bbe1104042b7a6f84143aebc6, type: 3}
+  skinCount: 5
+  framesPerSkin: 5
+  animationThreshold: 0

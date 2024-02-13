@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da5ae19415e48f4aae487e09f381729, type: 3}
+  m_Name: Eye
+  m_EditorClassIdentifier: 
+  health: 3
+  type: 2
+  sprites:
+  - {fileID: 230458012, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
+  - {fileID: 1192833826, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
+  - {fileID: 1523267886, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
+  - {fileID: -126296206, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
+  - {fileID: 7698438, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
+  - {fileID: -1156213125, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
+  - {fileID: -1248871113, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
+  - {fileID: -2030039914, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
+  skinCount: 1
+  framesPerSkin: 7
+  animationThreshold: 2

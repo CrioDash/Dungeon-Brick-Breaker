@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Data;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Scenes.LevelScene
 {
@@ -57,7 +58,7 @@ namespace Scenes.LevelScene
         {
             if (_isTouched)
             {
-                _lineRenderer.material.mainTextureOffset = new Vector2(-Time.time*4, 0);
+                _lineRenderer.material.mainTextureOffset = new Vector2(-Time.time*2, 0);
             }
         }
 
@@ -65,6 +66,8 @@ namespace Scenes.LevelScene
 
         private void OnMouseDown()
         {
+            if(EventSystem.current.IsPointerOverGameObject())
+                return;
             if(!_isCapable)
                 return;
             _isTouched = true;
@@ -83,6 +86,8 @@ namespace Scenes.LevelScene
 
         private void OnMouseExit()
         {
+            if(EventSystem.current.IsPointerOverGameObject())
+                return;
             _isTouched = false;
             _lineRenderer.positionCount = 0;
             foreach (Transform tr in points)
@@ -117,6 +122,8 @@ namespace Scenes.LevelScene
             
             for(int i =0; i< GameVariables.BulletCount; i++)
             {
+                if(_isCapable)
+                    yield break;
                 Bullet bul = BulletPool.Instance.Get();
                 bul.transform.position = shootTransform.position;
                 bul.SetSpeed(_bulletDirection.normalized * speed);

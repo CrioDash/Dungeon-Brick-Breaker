@@ -10,15 +10,9 @@ namespace Scenes.LevelScene
         private Rigidbody2D _body;
 
         private void Awake()
-        {
-            if (MainBullet == null)
-                MainBullet = this;
+        { 
+            MainBullet = this;
             _body = GetComponent<Rigidbody2D>();
-        }
-
-        private void Start()
-        {
-           
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -28,11 +22,14 @@ namespace Scenes.LevelScene
                 SetSpeed(Vector2.zero);
                 BulletPool.Instance.Put(this);
             }
+            
+        }
+
+        private void OnDisable()
+        {
             if(BulletPool.Instance.ActiveBullets==0)
                 LevelEventBus.Publish(LevelEventBus.LevelEventType.BulletLand);
         }
-
-        
 
         public void SetSpeed(Vector2 speed)
         {

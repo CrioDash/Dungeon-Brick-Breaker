@@ -45,6 +45,15 @@ namespace Scenes.LevelScene
             _bulletsStack.Push(bullet);
             bullet.gameObject.SetActive(false);
         }
-        
+
+        public void ClearActiveBullets()
+        {
+            int num = _activeBullets.Count;
+            for (int i = 0; i<num; i++)
+            {
+                Put(_activeBullets[0]);
+            }
+        }
+
     }
 }
