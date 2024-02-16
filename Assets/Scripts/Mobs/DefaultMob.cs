@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Data;
+using Mobs;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,30 +14,38 @@ namespace Scenes.LevelScene.Mobs
         [SerializeField] private SpriteRenderer spriteMask;
         
         
-        protected IOnBulletHit BulletHit
+        public IOnBulletHit BulletHit
         {
             get;
-            set;
+            private set;
         }
 
-        protected IOnDeath Death
+        public IOnDeath Death
         {
             get;
-            set;
+            private set;
         }
 
-        protected IOnWaveEnd WaveEnd
+        public IOnWaveEnd WaveEnd
         {
             get;
-            set;
+            private set;
         }
 
-        protected int Health
+        public int Health
         {
             get;
-            set;
+            private set;
         }
 
+        public int MaxHealth
+        {
+            get;
+            private set;
+        }
+
+        private HpBarScript _hpBar;
+        
         public MobType Type => type;
 
         private SpriteMask _mask;
@@ -54,18 +63,19 @@ namespace Scenes.LevelScene.Mobs
         {
             _boxCollider = GetComponent<BoxCollider2D>();
             _mask = sprite.GetComponent<SpriteMask>();
+            _hpBar = GetComponentInChildren<HpBarScript>();
         }
 
         private void Start()
         {
             Health = GameVariables.MobInfos[type].Health;
+            MaxHealth = GameVariables.MobInfos[type].Health;
             _clr = sprite.color;
             _startScale = transform.localScale;
             _mobNum = Random.Range(0, GameVariables.MobInfos[type].SkinCount);
             sprite.sprite = GameVariables.MobInfos[type].Sprites[_mobNum*GameVariables.MobInfos[type].FramesPerSkin];
             StartCoroutine(MobIdleRoutine());
-            StartCoroutine(WaveEndRoutine());
-            StartCoroutine(MobFadeout());
+            StartCoroutine(MobSpawnRoutine());
             SetStats();
         }
 
@@ -88,35 +98,51 @@ namespace Scenes.LevelScene.Mobs
         {
             if (other.collider.CompareTag("Bullet"))
             {
-                if (_hitRoutine != null)
-                {
-                    StopCoroutine(_hitRoutine);
-                }
-                _hitRoutine = StartCoroutine(MobHitRoutine());
+                
                 BulletHit?.TakeDamage(GameVariables.BulletDamage);
             }
         }
 
         public void ReduceHealth(int dmg)
         {
+            if (_hitRoutine != null)
+            {
+                StopCoroutine(_hitRoutine);
+            }
+            _hitRoutine = StartCoroutine(MobHitRoutine());
+            
             Health -= dmg;
+            _hpBar.TakeDamage(dmg);
+            
             if (Health > 0) return;
+            
             Death?.DeathEvent();
+            
             StartCoroutine(MobDeathRoutine());
         }
         
-        private IEnumerator MobFadeout()
+        private IEnumerator MobSpawnRoutine()
         {
-            Color startClr = new Color(1, 1, 1, 0);
+            float startY = transform.localPosition.y;
+            AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+            Vector3 pos = transform.localPosition;
+
+            Color startClr = _clr;
+            startClr.a = 0;
+            
             float t = 0;
             while (t < 1)
             {
-                sprite.color = Color.Lerp(startClr, Color.white, t);
-                t += Time.deltaTime * 2;
+                pos.y = Mathf.Lerp(startY, startY - 1, curve.Evaluate(t));
+                transform.localPosition = pos;
+                sprite.color = Color.Lerp(startClr, _clr, t);
+                t += Time.deltaTime * 4;
                 yield return null;
             }
-
-            sprite.color = Color.white;
+            
+            pos.y = startY - 1;
+            transform.localPosition = pos;
+            sprite.color = _clr;
         }
         
         private IEnumerator WaveEndRoutine()
@@ -132,7 +158,7 @@ namespace Scenes.LevelScene.Mobs
             {
                 pos.y = Mathf.Lerp(startY, startY - 1, curve.Evaluate(t));
                 transform.localPosition = pos;
-                t += Time.deltaTime * 2;
+                t += Time.deltaTime * 4;
                 yield return null;
             }
 

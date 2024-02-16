@@ -13,19 +13,22 @@ namespace Scenes.LevelScene
         [SerializeField] private Transform mobGrid;
         
         private GameObject[] _mobPrefabs;
+        
+        
         private float _mobQuantity;
-        private float _mobDifficulty;
+        private AnimationCurve _mobProbability;
 
         private int _waveNum = 1;
 
         private void Start()
         {
             _mobPrefabs = GameVariables.LevelInfos[GameVariables.CurrentLevel].MobPrefabs;
-            _mobDifficulty = GameVariables.LevelInfos[GameVariables.CurrentLevel].MobDifficulty;
+            _mobProbability = GameVariables.LevelInfos[GameVariables.CurrentLevel].MobProbability;
             _mobQuantity = GameVariables.LevelInfos[GameVariables.CurrentLevel].MobQuantity;
             
             SpawnMobs();
         }
+        
 
         private void OnEnable()
         {
@@ -43,10 +46,8 @@ namespace Scenes.LevelScene
             for (int i = -3; i < 5; i++)
             {
                 if(Random.Range(0f, 1f) > _mobQuantity + _waveNum*0.01875f) continue;
-
-                //Mathf.RoundToInt(Mathf.Lerp(0, _mobPrefabs.Length - 1, Mathf.Clamp01(Random.Range(0.25f, 0.75f)*Random.Range(_mobDifficulty, 1))));
-                int num = Random.Range(0, _mobPrefabs.Length);
                 
+                int num = Mathf.FloorToInt(_mobProbability.Evaluate(Random.value) * _mobPrefabs.Length);
                 
                 spawnPos.x = i - 0.55f;
                 DefaultMob mob =
