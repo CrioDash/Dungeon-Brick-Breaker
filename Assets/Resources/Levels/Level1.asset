@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobPrefabs:
   - {fileID: 7644009104939783200, guid: 84cc3d0863121f0499d3c73d28a2cd75, type: 3}
-  - {fileID: 8558038421498190267, guid: ed55be3d8ebf9ae44a0f0fe19f7a910b, type: 3}
+  - {fileID: 7644009104939783200, guid: a8191af43283a584cab0e055523acf57, type: 3}
   - {fileID: 6083518900016831482, guid: aca62d5973d56f14480e768eef7dca9f, type: 3}
   floorPrefabs:
   - {fileID: 8661971600696959897, guid: 0e54ab260d16e1e48b0d3782fdbc94fd, type: 3}
@@ -36,8 +36,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.46141857
-      value: 0.46471906
+      time: 0.27629894
+      value: 0.4670689
       inSlope: Infinity
       outSlope: Infinity
       tangentMode: 0

@@ -8,7 +8,7 @@ namespace Data
     {
         public static int CurrentLevel;
         
-        public static int BulletCount = 3;
+        public static int BulletCount = 10;
         public static DamageType ActiveBulletType = DamageType.Normal;
         public static int BulletDamage = 1;
 

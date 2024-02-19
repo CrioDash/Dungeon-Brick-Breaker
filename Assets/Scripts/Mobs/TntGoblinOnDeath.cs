@@ -21,7 +21,7 @@ namespace Mobs
             foreach (Collider2D col in mobs)
             {
                 if (col.CompareTag("Mob") && col.gameObject != gameObject)
-                    col.GetComponent<DefaultMob>().BulletHit.TakeDamage(5, DamageType.Fire);
+                    col.GetComponent<DefaultMob>().BulletHit.TakeDamage(5, DamageType.Fire, transform.position);
             }
             _mob.CreateSmoke();
         }

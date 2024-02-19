@@ -25,15 +25,11 @@ namespace Mobs
             hpBar.transform.localScale = new Vector3(0.95f, 0.6f, 0);
         }
 
-        private void OnDisable()
+        public void SetZeroHp()
         {
             if(_coroutine!=null)
                 StopCoroutine(_coroutine);
-        }
-
-        public void SetZeroHp()
-        {
-            hpBar.transform.localScale = new Vector3(0f , 0.6f, 0);
+            hpBar.transform.localScale = new Vector3(0.00000001f , 0.6f, 0);
         }
 
         public void TakeDamage(float dmg)

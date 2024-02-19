@@ -7,7 +7,7 @@ namespace Scenes.LevelScene.Mobs
     {
         private DefaultMob _mob;
         
-        public void TakeDamage(float dmg, DamageType type)
+        public void TakeDamage(float dmg, DamageType type, Vector3 pos)
         {
             if (_mob == null)
                 _mob = GetComponent<DefaultMob>();

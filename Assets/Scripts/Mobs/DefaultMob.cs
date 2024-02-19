@@ -90,6 +90,7 @@ namespace Scenes.LevelScene.Mobs
             
             _startScale = transform.localScale;
             _mobNum = Random.Range(0, GameVariables.MobInfos[type].SkinCount);
+            spriteMask.enabled = false;
             sprite.color = Color.clear;
             sprite.sprite = GameVariables.MobInfos[type].Sprites[_mobNum*GameVariables.MobInfos[type].FramesPerSkin];
             StartCoroutine(MobIdleRoutine());
@@ -131,7 +132,7 @@ namespace Scenes.LevelScene.Mobs
         {
             if (other.collider.CompareTag("Bullet"))
             {
-                BulletHit?.TakeDamage(GameVariables.BulletDamage, GameVariables.ActiveBulletType);
+                BulletHit?.TakeDamage(GameVariables.BulletDamage, GameVariables.ActiveBulletType, other.transform.position);
             }
         }
 
@@ -216,7 +217,7 @@ namespace Scenes.LevelScene.Mobs
             
             Death?.DeathEvent();
 
-            spriteMask.enabled = false;
+            spriteMask.enabled = true;
             _mask.enabled = true;
             sprite.sprite = GameVariables.MobInfos[type].Sprites[_mobNum*GameVariables.MobInfos[type].FramesPerSkin];
 
