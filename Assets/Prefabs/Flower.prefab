@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 1200438787729097537}
   m_Layer: 6
   m_Name: Flower
-  m_TagString: Bullet
+  m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f13a34e48f4ba0a698637bf54e504c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 0
   sprite: {fileID: 1537936648213425459}
   spriteMask: {fileID: 5891271707204084731}
 --- !u!61 &1200438787729097537

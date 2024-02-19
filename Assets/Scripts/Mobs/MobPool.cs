@@ -20,7 +20,7 @@ namespace Scenes.LevelScene.Mobs
 
         public DefaultMob Get(GameObject prefab, MobType type)
         {
-            if (_mobStack.Count == 0)
+            if (!_mobStack.ContainsKey(type) || _mobStack[type].Count==0)
             {
                 DefaultMob mob = Instantiate(prefab.gameObject, transform).gameObject.GetComponent<DefaultMob>();
                 if(!_activeMobs.ContainsKey(type))
@@ -32,6 +32,7 @@ namespace Scenes.LevelScene.Mobs
             {
                 DefaultMob mob = _mobStack[type].Pop();
                 mob.gameObject.SetActive(true);
+                mob.ResetStats();
                 if(!_activeMobs.ContainsKey(type))
                     _activeMobs.Add(type, new List<DefaultMob>());
                 _activeMobs[type].Add(mob);
@@ -41,11 +42,11 @@ namespace Scenes.LevelScene.Mobs
 
         public void Put(DefaultMob mob, MobType type)
         {
+            mob.gameObject.SetActive(false);
             _activeMobs[type].Remove(mob);
             if (!_mobStack.ContainsKey(type))
                 _mobStack.Add(type, new Stack<DefaultMob>());
             _mobStack[type].Push(mob);
-            mob.gameObject.SetActive(false);
         }
 
         public void ClearActiveBullets()

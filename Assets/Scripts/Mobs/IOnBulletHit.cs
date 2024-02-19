@@ -2,6 +2,6 @@ namespace Scenes.LevelScene.Mobs
 {
     public interface IOnBulletHit
     {
-        public void TakeDamage(int dmg);
+        public void TakeDamage(float dmg, DamageType type);
     }
 }

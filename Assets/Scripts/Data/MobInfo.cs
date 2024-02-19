@@ -9,6 +9,10 @@ namespace Data
         [Header("Stats settings")] 
         [SerializeField] private int health;
         [SerializeField] private MobType type;
+        [SerializeField] [Range(0.1f, 5)] private float normalResist;
+        [SerializeField] [Range(0.1f, 5)] private float fireResist;
+        [SerializeField] [Range(0.1f, 5)] private float thunderResist;
+        [SerializeField] [Range(0.1f, 5)] private float coldResist;
         
         [Header("Sprite settings")]
         [SerializeField] private Sprite[] sprites;
@@ -18,6 +22,10 @@ namespace Data
 
         public int Health => health;
         public MobType Type => type;
+        public float NormalResist => normalResist;
+        public float FireResist => fireResist;
+        public float ThunderResist => thunderResist;
+        public float ColdResist => coldResist;
         
         public Sprite[] Sprites => sprites;
         public int SkinCount => skinCount;

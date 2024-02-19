@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BottomBorder
   - Bullet
+  - Mob
   layers:
   - Default
   - TransparentFX

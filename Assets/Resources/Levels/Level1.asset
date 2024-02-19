@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   mobPrefabs:
-  - {fileID: 7644009104939783200, guid: 20c9bd42256ac334aa67fdb1fca16f0f, type: 3}
+  - {fileID: 7644009104939783200, guid: 84cc3d0863121f0499d3c73d28a2cd75, type: 3}
   - {fileID: 8558038421498190267, guid: ed55be3d8ebf9ae44a0f0fe19f7a910b, type: 3}
   - {fileID: 6083518900016831482, guid: aca62d5973d56f14480e768eef7dca9f, type: 3}
   floorPrefabs:
@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 8661971600696959897, guid: 24bc9026ba86a784ab6685e2bc417b9d, type: 3}
   - {fileID: 8661971600696959897, guid: 1c476d101004b2e4a912ee8f5c733e68, type: 3}
   - {fileID: 8661971600696959897, guid: bd5cd8d71ac08e7468c9c21fefc9c68e, type: 3}
-  mobQuantity: 0.5
+  mobQuantity: 1
   mobProbabilityCurve:
     serializedVersion: 2
     m_Curve:
@@ -36,8 +36,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.700005
-      value: 0.5000737
+      time: 0.46141857
+      value: 0.46471906
       inSlope: Infinity
       outSlope: Infinity
       tangentMode: 0
@@ -45,8 +45,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0
     - serializedVersion: 3
-      time: 0.9026489
-      value: 0.99056625
+      time: 0.9560547
+      value: 0.9882088
       inSlope: 2
       outSlope: 2
       tangentMode: 0

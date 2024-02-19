@@ -1,3 +1,4 @@
+using Data;
 using UnityEngine;
 
 namespace Scenes.LevelScene.Mobs
@@ -6,11 +7,11 @@ namespace Scenes.LevelScene.Mobs
     {
         private DefaultMob _mob;
         
-        public void TakeDamage(int dmg)
+        public void TakeDamage(float dmg, DamageType type)
         {
             if (_mob == null)
                 _mob = GetComponent<DefaultMob>();
-            _mob.ReduceHealth(dmg);
+            _mob.ReduceHealth(dmg, type);
         }
     }
 }

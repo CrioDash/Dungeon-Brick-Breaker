@@ -17,6 +17,7 @@ namespace Mobs
         private void Awake()
         {
             _parent = transform.parent.GetComponent<DefaultMob>();
+            hpBar.transform.localScale = new Vector3(0.95f , 0.6f, 0);
         }
 
         private void OnEnable()
@@ -24,7 +25,18 @@ namespace Mobs
             hpBar.transform.localScale = new Vector3(0.95f, 0.6f, 0);
         }
 
-        public void TakeDamage(int dmg)
+        private void OnDisable()
+        {
+            if(_coroutine!=null)
+                StopCoroutine(_coroutine);
+        }
+
+        public void SetZeroHp()
+        {
+            hpBar.transform.localScale = new Vector3(0f , 0.6f, 0);
+        }
+
+        public void TakeDamage(float dmg)
         {
             if (_coroutine != null)
             {
@@ -35,12 +47,12 @@ namespace Mobs
             _coroutine = StartCoroutine(TakeDamageRoutine(dmg));
         }
 
-        private IEnumerator TakeDamageRoutine(int dmg)
+        private IEnumerator TakeDamageRoutine(float dmg)
         {
             float t = 0;
             
-            Vector3 startScale = new Vector3(0.95f * ((float)(_parent.Health + dmg) / _parent.MaxHealth), 0.6f, 0);
-            Vector3 endScale = new Vector3(0.95f * ((float)_parent.Health / _parent.MaxHealth), 0.6f, 0);
+            Vector3 startScale = new Vector3(0.95f * ((_parent.Health + dmg) / _parent.MaxHealth), 0.6f, 0);
+            Vector3 endScale = new Vector3(0.95f * (_parent.Health / _parent.MaxHealth), 0.6f, 0);
 
             if (_parent.Health <= 0)
                 endScale.x = 0;

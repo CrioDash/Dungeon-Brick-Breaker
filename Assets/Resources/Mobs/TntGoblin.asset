@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da5ae19415e48f4aae487e09f381729, type: 3}
+  m_Name: TntGoblin
+  m_EditorClassIdentifier: 
+  health: 2
+  type: 4
+  normalResist: 1
+  fireResist: 5
+  thunderResist: 0.8
+  coldResist: 0.8
+  sprites:
+  - {fileID: 1457395135, guid: f25d534a289e1b64180bf4e28f4eb118, type: 3}
+  - {fileID: 1790935701, guid: f25d534a289e1b64180bf4e28f4eb118, type: 3}
+  - {fileID: 213288457, guid: f25d534a289e1b64180bf4e28f4eb118, type: 3}
+  - {fileID: -70133837, guid: f25d534a289e1b64180bf4e28f4eb118, type: 3}
+  - {fileID: 1570535784, guid: f25d534a289e1b64180bf4e28f4eb118, type: 3}
+  - {fileID: -1245497192, guid: f25d534a289e1b64180bf4e28f4eb118, type: 3}
+  - {fileID: -1486200271, guid: f25d534a289e1b64180bf4e28f4eb118, type: 3}
+  - {fileID: 1357230864, guid: f25d534a289e1b64180bf4e28f4eb118, type: 3}
+  skinCount: 1
+  framesPerSkin: 7
+  animationThreshold: 0

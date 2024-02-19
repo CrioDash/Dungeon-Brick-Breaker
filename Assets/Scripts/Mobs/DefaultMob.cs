@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Data;
 using Mobs;
 using UnityEngine;
@@ -17,28 +18,34 @@ namespace Scenes.LevelScene.Mobs
         public IOnBulletHit BulletHit
         {
             get;
-            private set;
+            set;
         }
 
         public IOnDeath Death
         {
             get;
-            private set;
+            set;
         }
 
         public IOnWaveEnd WaveEnd
         {
             get;
-            private set;
+            set;
         }
 
-        public int Health
+        public float Health
         {
             get;
             private set;
         }
 
         public int MaxHealth
+        {
+            get;
+            private set;
+        }
+
+        public Dictionary<DamageType, float> Resists
         {
             get;
             private set;
@@ -68,11 +75,22 @@ namespace Scenes.LevelScene.Mobs
 
         private void Start()
         {
+            if(Camera.main.aspect != 9f/16)
+                transform.localScale = Vector3.one * Camera.main.aspect / (9f / 16);
+            
+            Resists = new Dictionary<DamageType, float>();
+            Resists.Add(DamageType.Normal, GameVariables.MobInfos[type].NormalResist);
+            Resists.Add(DamageType.Fire, GameVariables.MobInfos[type].FireResist);
+            Resists.Add(DamageType.Thunder, GameVariables.MobInfos[type].ThunderResist);
+            Resists.Add(DamageType.Cold, GameVariables.MobInfos[type].ColdResist);
+            Resists.Add(DamageType.Pure, 1);
             Health = GameVariables.MobInfos[type].Health;
             MaxHealth = GameVariables.MobInfos[type].Health;
             _clr = sprite.color;
+            
             _startScale = transform.localScale;
             _mobNum = Random.Range(0, GameVariables.MobInfos[type].SkinCount);
+            sprite.color = Color.clear;
             sprite.sprite = GameVariables.MobInfos[type].Sprites[_mobNum*GameVariables.MobInfos[type].FramesPerSkin];
             StartCoroutine(MobIdleRoutine());
             StartCoroutine(MobSpawnRoutine());
@@ -81,12 +99,17 @@ namespace Scenes.LevelScene.Mobs
 
         private void OnEnable()
         {
-            LevelEventBus.Subscribe(LevelEventBus.LevelEventType.BulletLand, () => StartCoroutine(WaveEndRoutine()));
+            LevelEventBus.Subscribe(LevelEventBus.LevelEventType.BulletLand, DoWaveEnd);
         }
 
         private void OnDisable()
         {
-            LevelEventBus.Unsubscribe(LevelEventBus.LevelEventType.BulletLand, () => StartCoroutine(WaveEndRoutine()));
+            LevelEventBus.Unsubscribe(LevelEventBus.LevelEventType.BulletLand, DoWaveEnd);
+        }
+
+        private void DoWaveEnd()
+        {
+            StartCoroutine(WaveEndRoutine());
         }
 
         protected virtual void SetStats()
@@ -94,35 +117,54 @@ namespace Scenes.LevelScene.Mobs
             BulletHit ??= gameObject.AddComponent<DefaultBulletHit>();
         }
 
+        public void ResetStats()
+        {
+            Health = MaxHealth;
+            _boxCollider.enabled = true;
+            _mask.enabled = false;
+            spriteMask.enabled = true;
+            StartCoroutine(MobSpawnRoutine());
+            StartCoroutine(MobIdleRoutine());
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.CompareTag("Bullet"))
             {
-                
-                BulletHit?.TakeDamage(GameVariables.BulletDamage);
+                BulletHit?.TakeDamage(GameVariables.BulletDamage, GameVariables.ActiveBulletType);
             }
         }
 
-        public void ReduceHealth(int dmg)
+        public void ReduceHealth(float dmg, DamageType type)
         {
+            if(Health==0 && dmg >0) return;
+            
             if (_hitRoutine != null)
             {
                 StopCoroutine(_hitRoutine);
             }
+
             _hitRoutine = StartCoroutine(MobHitRoutine());
             
+            dmg *= Resists[type];
+            
             Health -= dmg;
-            _hpBar.TakeDamage(dmg);
+            Health = Mathf.Clamp(Health, 0, MaxHealth);
             
-            if (Health > 0) return;
+            if (Health > 0)
+            {
+                _hpBar.TakeDamage(dmg);
+                return;
+            }
             
-            Death?.DeathEvent();
-            
+            _hpBar.SetZeroHp();
             StartCoroutine(MobDeathRoutine());
+            
         }
         
         private IEnumerator MobSpawnRoutine()
         {
+            yield return null;
             float startY = transform.localPosition.y;
             AnimationCurve curve = AnimationCurve.EaseInOut(0, 0, 1, 1);
             Vector3 pos = transform.localPosition;
@@ -171,6 +213,10 @@ namespace Scenes.LevelScene.Mobs
         private IEnumerator MobDeathRoutine()
         {
             _boxCollider.enabled = false;
+            
+            Death?.DeathEvent();
+
+            spriteMask.enabled = false;
             _mask.enabled = true;
             sprite.sprite = GameVariables.MobInfos[type].Sprites[_mobNum*GameVariables.MobInfos[type].FramesPerSkin];
 
@@ -196,8 +242,8 @@ namespace Scenes.LevelScene.Mobs
                 t += Time.deltaTime * 2;
                 yield return null;
             }
-
-            Destroy(gameObject);
+            
+            MobPool.Instance.Put(this, Type);
 
         }
 

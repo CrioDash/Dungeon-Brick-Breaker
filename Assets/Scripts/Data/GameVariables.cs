@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Scenes.LevelScene;
 using UnityEngine;
 
 namespace Data
@@ -8,6 +9,7 @@ namespace Data
         public static int CurrentLevel;
         
         public static int BulletCount = 3;
+        public static DamageType ActiveBulletType = DamageType.Normal;
         public static int BulletDamage = 1;
 
         public static Dictionary<MobType, MobInfo> MobInfos;

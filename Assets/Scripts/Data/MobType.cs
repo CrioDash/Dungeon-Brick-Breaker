@@ -7,7 +7,8 @@ namespace Data
         Goblin,
         Ogre,
         Eye,
-        Flower
+        Flower,
+        TntGoblin
     }
     
 }

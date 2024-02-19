@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   type: 2
+  normalResist: 1
+  fireResist: 1.5
+  thunderResist: 0.5
+  coldResist: 0.5
   sprites:
   - {fileID: 230458012, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
   - {fileID: 1192833826, guid: 6407dc447dad86b4db2f8912dc1127fe, type: 3}
